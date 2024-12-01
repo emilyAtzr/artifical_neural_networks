@@ -29,6 +29,39 @@ Neuronale Netzwerke finden in vielen Bereichen Anwendung. Hier ein paar Beispiel
     * Persönliche Empfehlungen basierend auf Benutzeraktivitäten 
         * **Netflix** oder **Amazon Prime**
 
+## Neuron
+
+Ein **Neuron** ist die grundlegende Baueinheit eines neuronalen Netzwerks und entspricht in gewisser Weise einer Nervenzelle im menschlichen Gehirn. Es hat die Aufgabe, Eingabewerte zu verarbeiten, eine Berechnung durchzuführen und basierend auf dieser Berechnung ein Signal weiterzugeben. 
+Ein Neuron besteht im Wesentlichen aus **einem einzigen Wert**, der als **Aktivierung** bezeichnet wird.
+
+### Funktionsweise
+
+1. **Eingaben empfangen**
+    * Jedes Neuron empfängt Eingaben von anderen Neuronen / Eingabedaten des Netzwerks
+    * Eingaben $x_i$ sind die Features einer Observation
+        * Stellen die Werte dar, die das Neuron verarbeiten muss
+    * Beispiel:
+        * Bilder (28x28 Pixel) sollen klassifiziert werden
+        * Jeder Pixel hat einen gewissen Farbwert, der dem Wert eines Neurons entspricht
+        * Eingabeschicht hat also 784 Neuronen 
+
+2. **Gewichte anwenden**
+    * Jede Eingabe $x_i$ wird mit einem **Gewicht** $w_i$ multipliziert
+    * Gewichte bestimmten die Wichtigkeit jeder Eingabe für das Neuron
+        * Je höher dieses ist, desto mehr Einfluss hat die Eingabe auf das Ergebnis
+    * Gewichtete Eingabewerte werden addiert:
+        * $z = (w_1 \cdot x_1) + (w_2 \cdot x_2) + \dots + b$
+    * Der **Bias b** passt das Ergebnis zusätzlich an und hilft, das Modell **flexibler** zu machen
+
+3. **Aktivierungsfunktion anwenden**
+    * Der zuvor berechnete Wert z wird durch eine **Aktivierungsfunktion** transformiert
+    * Entscheidet, ob ein Neuron aktiviert wird
+        * Ob Signal weitergeleitet wird oder nicht
+
+4. **Signal weiterleiten**
+    * Berechneter Wert wird weitergegeben, wenn Neuron durch die **Aktivierungsfunktion** aktiviert wird
+    * Dieses dient als Eingabe für die Neuronen der nächsten Schicht
+
 ## Aufbau
 
 Ein neuronales Netzwerk besteht aus mehreren Schichten, die zusammenarbeiten:
@@ -40,7 +73,6 @@ Ein neuronales Netzwerk besteht aus mehreren Schichten, die zusammenarbeiten:
     * Hier passiert die eigentliche Verarbeitung
     * Jedes Neuron bekommt die Werte der vorherigen Schicht
         * Multipliziert diese Werte mit **Gewichten** und addiert einen **Bias**
-        * $z = (w_1 \cdot x_1) + (w_2 \cdot x_2) + \dots + b$
     * Anschließend wird eine **Aktivierungsfunktion** angewendet
 
 * **Ausgabeschicht (Output Layer)**
