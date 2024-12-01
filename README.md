@@ -86,9 +86,20 @@ Ein neuronales Netzwerk besteht aus mehreren Schichten, die zusammenarbeiten:
     * Bei **mehrdimensionalen Ausgaben** können mehrere Neuronen in der Ausgabeschicht benötigt werden
         * Vorhersage mehrerer Werte
 
+<br>
 <img src="images/ann.png" alt="Neural Network" width="400"/>
+<br><br>
 
-## Lernen 
+Das Hinzufügen mehrerer **Hidden Layers** ermöglicht es dem neuronalen Netzwerk, komplexere Aufgaben zu lösen und 
+abstraktere Muster zu erkennen. Man bezeichnet dies oft als **Deep Neural Network (DNNs)**, da sie hochkomplexe Probleme lösen können, die einfache Netzwerke mit wenigen Schichten nicht bewältigen können.
+
+Jede zusätzliche Schicht erhöht die Anzahl der Berechnungen, da mehr Neuronen aktiviert werden müssen. Dies führt zu **längeren Trainingszeiten** und **höheren Speicheranforderungen**.
+
+Mehr Schichten bedeuten auch mehr Parameter (Gewichte und Biases), was die **Gefahr von Overfitting erhöht**. 
+Dabei passt sich das Modell zu stark an die Trainingsdaten an und liefert schlechte Ergebnisse bei neuen Daten.
+Um diesem Problem entgegenzuwirken verwendet man Techniken wie **Regularisierung**, **Dropout** oder **mehr Trainingsdaten**.
+
+## Training
 
 Ein neuronales Netzwerk lernt durch den kontinuierlichen Anpassungsprozess der **Gewichte** und **Biases** 
 basierend auf den Eingabedaten und der **Fehlerberechnung**. 
@@ -118,3 +129,23 @@ Das Lernen erfolgt in zwei Hauptphasen: **Forward Pass** und **Backpropagation**
     * Fehler soll mit jeder Iteration minimiert werden durch die Anpassung der Gewichte
         * Netzwerk macht dadurch immer bessere Vorhersagen
 
+<img src="images/loss.png" width="400">
+
+### Forward Pass
+
+### Backward Propagation
+
+
+### Batch Size
+
+* Bestimmt, wie viele Eingabedaten durchs Netzwerk geleitet werden bevor Gewichte aktualisiert werden
+* Beeinflusst **Geschwindigkeit** und **Genauigkeit** des Lernprozesses
+
+### Adam
+
+### Regularisierung
+
+## Aktivierungsfunktionen
+
+* **Sigmoid**
+* **ReLU**
