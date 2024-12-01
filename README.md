@@ -135,6 +135,12 @@ Das Lernen erfolgt in zwei Hauptphasen: **Forward Pass** und **Backpropagation**
 
 $ \text{out} = f\left(b + \sum_i x_i \cdot w_i \right) = f\left(b + x \cdot w^T \right) $
 
+$x_i$ ... **Eingabewerte** für das neuronale Netzwerk <br>
+$w_i$ ... **Gewichte**, die bestimmen, wie stark jeder Eingabewert in die Berechnung des Outputs einfließt <br>
+$b$ ... **Bias** wird hinzugefügt, um eine Verschiebung in den Vorhersagen zu ermöglichen <br>
+$\sum_i x_i \cdot w_i$ ... **gewichtete Summe** der Eingabewerte $x_i$ (Linearkombination) <br>
+$x \cdot w^T$ ... Dasselbe wie darüber mit der Summe in Vektorform, $w^T$ ist der transponierte Vektor der Gewichte <br>
+$f$... **Aktivierungsfunktion**, die auf die berechnete Summe angewendet wird (kann sich je nach Modell unterscheiden)
 
 ### Backpropagation
 
@@ -142,14 +148,11 @@ Diese Formel ist ein grundlegender Ausdrück für die **Gewichtsaktualisierung**
 
 Hierbei werden die **Gewichte in die entgegengesetzte Richtung des Gradienten verschoben** (deswegen das Minuszeichen), um den Fehler zu minimieren und sich der optimalen Lösung anzunähern.
 
-$w_{t+1} = w_t - \eta \frac{\partial L}{\partial w_t}$
+$w_{t+1} = w_t - \eta \frac{\partial L}{\partial w_t}$ 
 
-$w_t$ ... **Gewichte** des Modells zum Zeitpunkt t in der aktuellen Iteration
-
-$w_{t+1}$ ... **Gewichte** des Modells in der nächsten Iteration t + 1, nachdem sie aktualisiert wurden 
-
-$\eta$ ... **Lernrate**, gibt an, wie groß der Schritt bei der Gewichtsaktualisierung ist (zu große Lernrate kann dazu führen, dass das Modell die optimale Lösung überspringt)
-
+$w_t$ ... **Gewichte** des Modells zum Zeitpunkt t in der aktuellen Iteration <br>
+$w_{t+1}$ ... **Gewichte** des Modells in der nächsten Iteration t + 1, nachdem sie aktualisiert wurden <br>
+$\eta$ ... **Lernrate**, gibt an, wie groß der Schritt bei der Gewichtsaktualisierung ist (zu große Lernrate kann dazu führen, dass das Modell die optimale Lösung überspringt) <br>
 $\frac{\partial L}{\partial w_t}$ ... **Ableitung der Verlustfunktion L** nach den Gewichten $w_t$. Der Gradient gibt an, in welche Richtung die Gewichte angepasst werden müssen, um den Fehler zu minimieren.
 
 ### Gradient Descent
@@ -213,6 +216,8 @@ Adam eignet sich besonders für **nicht-stationäre Probleme**, bei denen die Gr
 ### Regularisierung
 
 ## Aktivierungsfunktionen
+
+Die Aktivierungsfunktion sorgt dafür, dass das Modell nicht nur lineare Zusammenhänge lernt, sondern auch komplexe, nicht-lineare Beziehungen.
 
 * **Sigmoid**
 * **ReLU**
