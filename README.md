@@ -133,7 +133,7 @@ Das Lernen erfolgt in zwei Hauptphasen: **Forward Pass** und **Backpropagation**
 
 ### Forward Pass
 
-$ \text{out} = f\left(b + \sum_i x_i \cdot w_i \right) = f\left(b + x \cdot w^T \right) $
+$ \text{out} = f(b + \sum_i x_i \cdot w_i) = f(b + x \cdot w^T) $
 
 $x_i$ ... **Eingabewerte** für das neuronale Netzwerk <br>
 $w_i$ ... **Gewichte**, die bestimmen, wie stark jeder Eingabewert in die Berechnung des Outputs einfließt <br>
