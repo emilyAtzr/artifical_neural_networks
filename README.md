@@ -133,11 +133,33 @@ Das Lernen erfolgt in zwei Hauptphasen: **Forward Pass** und **Backpropagation**
 
 ### Forward Pass
 
-### Backward Propagation
+$ \text{out} = f\left(b + \sum_i x_i \cdot w_i \right) = f\left(b + x \cdot w^T \right) $
+
+
+### Backpropagation
+
+Diese Formel ist ein grundlegender Ausdrück für die **Gewichtsaktualisierung** in einem **Gradient Descent**-Verfahren, das auch in der **Backpropagation** verwendet wird, um die Gewichte eines neuronalen Netzwerks zu optimieren. 
+
+Hierbei werden die **Gewichte in die entgegengesetzte Richtung des Gradienten verschoben** (deswegen das Minuszeichen), um den Fehler zu minimieren und sich der optimalen Lösung anzunähern.
+
+$w_{t+1} = w_t - \eta \frac{\partial L}{\partial w_t}$
+
+$w_t$ ... **Gewichte** des Modells zum Zeitpunkt t in der aktuellen Iteration
+
+$w_{t+1}$ ... **Gewichte** des Modells in der nächsten Iteration t + 1, nachdem sie aktualisiert wurden 
+
+$\eta$ ... **Lernrate**, gibt an, wie groß der Schritt bei der Gewichtsaktualisierung ist (zu große Lernrate kann dazu führen, dass das Modell die optimale Lösung überspringt)
+
+$\frac{\partial L}{\partial w_t}$ ... **Ableitung der Verlustfunktion L** nach den Gewichten $w_t$. Der Gradient gibt an, in welche Richtung die Gewichte angepasst werden müssen, um den Fehler zu minimieren.
 
 ### Gradient Descent
 
 Bei **Gradient Descent** handelt es sich um einen Optimierungsalgorithmus, der eine zentralle Rolle im Training von neuronalen Netzwerken spielt. Er wird verwendet, um die **Gewichte** und **Biases** des Netzwerks zu aktualisieren, um die **Fehler** (Loss) zu minimieren und so die **Vorhersagegenauigkeit** zu **verbessern**. 
+
+* Positiver Gradient
+    * Gewicht muss reduziert werden
+* Negativer Gradient
+    * Gewicht muss erhöht werden
 
 #### Funktionsweise
 
