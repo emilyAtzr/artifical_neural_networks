@@ -135,13 +135,58 @@ Das Lernen erfolgt in zwei Hauptphasen: **Forward Pass** und **Backpropagation**
 
 ### Backward Propagation
 
+### Gradient Descent
+
+Bei **Gradient Descent** handelt es sich um einen Optimierungsalgorithmus, der eine zentralle Rolle im Training von neuronalen Netzwerken spielt. Er wird verwendet, um die **Gewichte** und **Biases** des Netzwerks zu aktualisieren, um die **Fehler** (Loss) zu minimieren und so die **Vorhersagegenauigkeit** zu **verbessern**. 
+
+#### Funktionsweise
+
+* **Berechnung des Gradienten**
+    * Gibt Richtung und Stärke an, in die das Gewicht angepasst werden muss
+        * Gibt die Richtung an, in der der Fehler zunimmt
+    * Aus Fehlerberechnung und Ableitung der Loss-Funktion in Bezug auf die Gewichte
+
+* **Gewichtsaktualisierung**
+    * Gewichte und Biases werden in die entgegengesetzte Richtung des Gradienten verschoben
+
+* **Schrittgröße**
+    * Anpassung erfolgt in kleinen Schritten
+    * Bestimmt durch die **Lernrate**
+
+<img src="images/gradient_descent.png" width="400"/>
 
 ### Batch Size
 
 * Bestimmt, wie viele Eingabedaten durchs Netzwerk geleitet werden bevor Gewichte aktualisiert werden
 * Beeinflusst **Geschwindigkeit** und **Genauigkeit** des Lernprozesses
 
+Die Batch Size beeinflusst das Training auf verschiedene Weise:
+
+1. **Kleinere Batch-Größe**
+    * Vorteile:
+        * Schnellere Aktualisierung der Gewichte (häufige Anpassungen)
+        * Bessere Generalisierung möglich
+            * Wahrscheinlichkeit von Overfitting wird verringert
+    * Nachteile:
+        * Größere Schwankung des Fehlerwerts möglich
+            * Gradientabstieg ist weniger stabil
+
+2. **Größere Batch-Größe**
+    * Vorteile:
+        * Stabilere und genauere Schätzungen des Gradienten
+            * Mehr Daten werden in einem Schritt verarbeitet
+            * Stabilere Konvergenz
+    * Nachteile:
+        * Längere Trainingszeiten
+        * Schlechtere Generalisierung
+
 ### Adam
+
+Adam (Adaptive Moment Estimation) ist eine erweiterte Version des Gradient Descent-Algorithmus, die bei der
+Aktualisierung der Gewichte sowohl die **erste Momentabschätzung** (Mittelwert des Gradienten) als auch die **zweite Momentabschätzung** (Unschärfe / Varianz der Gradienten) berücksichtigt.
+Dieser Ansatz passt die **Lernrate individuell für jedes Gewicht** an, basierend auf den Momentabschätzungen, was zu einer **schnelleren und stabileren Konvergenz** führt.
+
+Adam eignet sich besonders für **nicht-stationäre Probleme**, bei denen die Gradienten stark variieren können, und ist daher eine häufig verwendete Methode in neuronalen Netzwerken.
 
 ### Regularisierung
 
