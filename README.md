@@ -34,6 +34,8 @@ Neuronale Netzwerke finden in vielen Bereichen Anwendung. Hier ein paar Beispiel
 Ein **Neuron** ist die grundlegende Baueinheit eines neuronalen Netzwerks und entspricht in gewisser Weise einer Nervenzelle im menschlichen Gehirn. Es hat die Aufgabe, Eingabewerte zu verarbeiten, eine Berechnung durchzuführen und basierend auf dieser Berechnung ein Signal weiterzugeben. 
 Ein Neuron besteht im Wesentlichen aus **einem einzigen Wert**, der als **Aktivierung** bezeichnet wird.
 
+<img src="images/neuron.png" alt="Neuron" width="400"/>
+
 ### Funktionsweise
 
 1. **Eingaben empfangen**
@@ -71,35 +73,48 @@ Ein neuronales Netzwerk besteht aus mehreren Schichten, die zusammenarbeiten:
 
 * **Verborgene Schicht (Hidden Layer)**
     * Hier passiert die eigentliche Verarbeitung
-    * Jedes Neuron bekommt die Werte der vorherigen Schicht
-        * Multipliziert diese Werte mit **Gewichten** und addiert einen **Bias**
-    * Anschließend wird eine **Aktivierungsfunktion** angewendet
+    * Jedes Neuron empfängt Eingaben aus der vorherigen Schicht
+        * Gewichtet diese und summiert sie
+        * Ergebnis wird an die **Aktivierungsfunktion** weitergegeben
 
 * **Ausgabeschicht (Output Layer)**
-    * Liefert das Ergebnis
-    * Hat genau so viele Neuronen wie mögliche Ausgaben (Klassen)
+    * Liefert das endgültige Ergebnis des Netzwerks
+    * Bei **Klassifikationen** hat die Ausgabeschicht normalerweise so viele Neuronen wie Klassen
+        * Klassifikation von handgeschriebenen Ziffern (0-9) gibt es 10 Neuronen
+    * Bei **Regressionsaufgaben** kann die Ausgabeschicht auch nur ein Neuron haben
+        * Kontinuierlicher Wert - z.B. für Preisvorhersagen
+    * Bei **mehrdimensionalen Ausgaben** können mehrere Neuronen in der Ausgabeschicht benötigt werden
+        * Vorhersage mehrerer Werte
+
+<img src="images/ann.png" alt="Neural Network" width="400"/>
 
 ## Lernen 
 
-Das neuronale Netzwerk lernt, indem es die Fehler korrigiert:
+Ein neuronales Netzwerk lernt durch den kontinuierlichen Anpassungsprozess der **Gewichte** und **Biases** 
+basierend auf den Eingabedaten und der **Fehlerberechnung**. 
+Das Lernen erfolgt in zwei Hauptphasen: **Forward Pass** und **Backpropagation**
 
+1. **Forward Pass**
+    * Vorhersage / Ausgabe wird berechnet indem Eingabedaten durch das Netzwerk geschickt werden
+        * Durch Berechnung der Aktivierungen
+        * Die einzelnen Gewichtungen werden anfangs random gesetzt
+    * Ausgabe aus dem Forward Pass ist der **erste Versuch** des Netzwerks, eine Vorhersage zu treffen
+    * Kann sich von der tatsächlichen Zielausgabe unterscheiden
+    
+2. **Fehlerberechnung (Loss Function)**
+    * Nach dem Forward Pass wird der Fehler ermittelt
+        * Differenz zwischen der **Vorhersage** und der tatsächlichen **Zielausgabe**
+    * Fehlerberechnung erfolgt typischerweise durch eine **Loss Function**
+        * z.B. Mean Squared Error (MSE) - Regression
 
-Neuron -> Thing that holds a number
+3. **Backpropagation**
+    * **Fehler**, der im Forward Pass berechnet wurde, wird **rückwärts durchs Netzwerk propagiert**
+        * Die einzelnen **Gewichtungen** werden dabei angepasst
+        * Ziel ist es, die Gewichte so zu ändern, dass der Fehler im nächsten Durchgang kleiner wird
 
-The value inside the neuron is called activation. For example, if we have a hand-written digit
-that is represented by 28x28 pixels, each pixel is a neuron that contains the grey-scale of that pixel.
-
-So 28 x 28 is 784, which is the number of neurons of the first layer.
-
-The last layer of the neural networks represents the end results. So, if we should classify hand-written digits from 0 to 9 there are 10 neurons at the end. Each neuron represents a result value from 0 to 9.
-
-These neurons also have a value between zero and one. It is the value the system things a given image will corresponde most with. 
-
-Between the first layer and the last layer there are some hidden layers.
-
-Between these neurons, each connection gets a weight. These weights are all numbers.
-
-Activations should be between 0 and 1.
-
-Learning means that the weights and biases will be changed to find the optimal settings.
+4. **Wiederholung (Iterativer Lernprozess)**
+    * Forward Pass und Backpropagation werden **mehrmals wiederholt**
+    * Netzwerk wird mit verschiedenen Trainingsdaten konfrontiert
+    * Fehler soll mit jeder Iteration minimiert werden durch die Anpassung der Gewichte
+        * Netzwerk macht dadurch immer bessere Vorhersagen
 
