@@ -207,13 +207,46 @@ Die Batch Size beeinflusst das Training auf verschiedene Weise:
 
 ### Adam
 
-Adam (Adaptive Moment Estimation) ist eine erweiterte Version des Gradient Descent-Algorithmus, die bei der
-Aktualisierung der Gewichte sowohl die **erste Momentabschätzung** (Mittelwert des Gradienten) als auch die **zweite Momentabschätzung** (Unschärfe / Varianz der Gradienten) berücksichtigt.
-Dieser Ansatz passt die **Lernrate individuell für jedes Gewicht** an, basierend auf den Momentabschätzungen, was zu einer **schnelleren und stabileren Konvergenz** führt.
+Adam (Adaptive Moment Estimation) ist eine erweiterte Version des Gradient Descent-Algorithmus.
+Zwei Schätzungen werden dabei berücksichtigt:
 
-Adam eignet sich besonders für **nicht-stationäre Probleme**, bei denen die Gradienten stark variieren können, und ist daher eine häufig verwendete Methode in neuronalen Netzwerken.
+* **Erste Momentabschätzung**
+    * Mittelwert der Gradienten
+* **Zweite Momentabschätzung**
+    * Varianz (Schwankungen) der Gradienten
+
+Dabei passt Adam die **Lernrate individuell für jedes Gewicht an**.
+
+**Vorteile:**
+* Schnellere und stabilere Konvergenz
+* Nützlich bei **nicht-stationären Problemen** bei denen Gradienten stark schwanken
+
+Adam wird häufig in **neuronalen Netzwerken** verwendet.
 
 ### Regularisierung
+
+Bei der **Regularisierung** geht es darum, ein Modell zu gestalten, dass **nicht übermäßig auf Trainingsdaten angepasst** wird (Overfitting), sondern generalisiert und somit auch auf neuen, nicht gesehenen Daten gut funktioniert.
+
+**Ziel der Regularisierung:**
+* Modell soll vereinfacht werden
+    * Große Gewichtswerte werden bestraft
+    * Komplexität des Modells wird eingeschränkt
+
+**Typen der Regularisierung:**
+* **L2-Regularisierung**
+    * Verwendet um die Gewichte klein zu halten
+    * Überanpassungen sollen so verhindert werden
+* **L1-Regularisierung**
+    * Einige Gewichtswerte werden auf 0 gesetzt
+    * Features werden effektiv aus dem Modell entfernt (Feature Selection)
+* **Dropout**
+    * Teil der Neuronen im Netzwerk werden während des Trainings deaktiviert
+    * So wird verhindert, dass das Modell sich zu stark auf bestimmte Neuronen stützt
+    * **Robustheit** des Modells wird gefördert
+
+**Vorteile:**
+* Risiko von Overfitting wird reduziert
+* Verbessert die Generalität des Modells
 
 ## Aktivierungsfunktionen
 
@@ -292,7 +325,7 @@ Tanh-Funktionen abgelöst.
 
 ### Softmax
 
-Die **Softmax-Funktion** wird hauptsächlich in neuronalen Netzen für **Mehrklassen-Klassifikationsprobleme** verwendet.
+Die **Softmax-Funktion** wird hauptsächlich in neuronalen Netzen für **Mehrklassen-Klassifikationsprobleme** mit **Cross Entropy Loss** verwendet.
 Sie transformiert die Rohwerte eines neuronalen Netzwerks in **Wahrscheinlichkeiten**, die alle zusammen 1 ergeben.
 Jede Ausgabe stellt die Wahrscheinlichkeit dar, dass die Eingabe zu einer bestimmten Klasse gehört.
 
