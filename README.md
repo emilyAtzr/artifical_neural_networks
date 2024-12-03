@@ -137,7 +137,7 @@ $ \text{out} = f(b + \sum_i x_i \cdot w_i) = f(b + x \cdot w^T) $
 
 $x_i$ ... **Eingabewerte** für das neuronale Netzwerk <br>
 $w_i$ ... **Gewichte**, die bestimmen, wie stark jeder Eingabewert in die Berechnung des Outputs einfließt <br>
-$b$ ... **Bias** wird hinzugefügt, um eine Verschiebung in den Vorhersagen zu ermöglichen <br>
+$b$ ... **Bias** wird hinzugefügt, um eine Verschiebung in den Vorhersagen zu ermöglichen (Flexibilität) <br>
 $\sum_i x_i \cdot w_i$ ... **gewichtete Summe** der Eingabewerte $x_i$ (Linearkombination) <br>
 $x \cdot w^T$ ... Dasselbe wie darüber mit der Summe in Vektorform, $w^T$ ist der transponierte Vektor der Gewichte <br>
 $f$... **Aktivierungsfunktion**, die auf die berechnete Summe angewendet wird (kann sich je nach Modell unterscheiden)
@@ -217,7 +217,88 @@ Adam eignet sich besonders für **nicht-stationäre Probleme**, bei denen die Gr
 
 ## Aktivierungsfunktionen
 
-Die Aktivierungsfunktion sorgt dafür, dass das Modell nicht nur lineare Zusammenhänge lernt, sondern auch komplexe, nicht-lineare Beziehungen.
+Die Aktivierungsfunktion sorgt dafür, dass das Modell **nicht nur lineare Zusammenhänge** lernt, sondern auch komplexe, nicht-lineare Beziehungen.
+Jede Schicht fügt eine neue, nicht-lineare Transformation hinzu, wodurch das neuronale Netz viel leistungsfähiger wird.
 
-* **Sigmoid**
-* **ReLU**
+Diese Funktionen bestimmen, wie die Ausgaben von Neuronen transformiert werden, bevor sie an die nächste Schicht weitergegeben werden.
+
+### **Sigmoid**
+
+Die **Sigmoid-Funktion** ist eine Aktivierungsfunktion, die eine **S-Kurve (Sigmoidkurve)** beschreibt.
+Sie nimmt als Eingabe eine beliebige reelle Zahl und gibt einen Wert zwischen 0 und 1 zurück. 
+Die Funktion wird häufig verwendet, um Werte in **Wahrscheinlichkeiten** umzuwandeln.
+
+<img src="images/sigmoid.png" width="400"/> <br>
+
+**Eigenschaften der Sigmoid-Funktion:**
+
+* Ausgabe im Bereich [0, 1]
+    * Alle Werte werden auf diesen Bereich beschränkt
+    * Ideal für Wahrscheinlichkeitsberechnungen
+* Glatt und kontinuierlich
+    * Ableitung existiert überall
+    * Für Optimierungsverfahren wie den Gradientenabstieg geeignet
+
+**Anwendungsgebiete:**
+* Binärklassifikation
+    * Ausgabe einer Wahrscheinlichkeit darstellen
+        * z.B. ob ein Bild eine Katze zeigt (1) oder nicht (0)
+    * Meist in Kombination mit der **Binary Cross-Entropy-Loss-Funktion**
+        * Abweichung der Vorhersagen von den tatsächlichen Klassen zu minimieren
+* Reinforcement Learning
+    * Wahrscheinlichkeit bestimmen, mit der eine bestimmte Aktion ausgeführt wird
+
+**Vorteile:**
+* Beliebige Eingaben werden in einen Bereich zwischen 0 und 1 umgewandelt
+* Einfach und leicht zu implementieren
+
+**Nachteile:**
+* Vanishing Gradient Problem
+    * Für sehr große / kleine Werte von x wird die Ableitung sehr kleine
+    * Erschwert das Training bei tiefen neuronalen Netzen erschwert
+* Langsame Konvergenz im Vergleich zu modernen Aktivierungsfunktionen wie ReLU
+
+### **ReLU**
+
+Die **ReLU-Aktivierungsfunktion** ist heutzutage eine der beliebtesten und weit verbreitesten Funktionen in tiefen neuronalen Netzwerken. Sie wird durch die folgende Formel definiert:
+
+$f(x) = max(0, x)$
+
+Das bedeutet:
+* Wenn **x <= 0**, gibt ReLU **0** zurück
+* Wenn **x > 0**, gibt ReLU den Wert **x** unverändert zurück
+
+Diese einfache FUnktion führt zu leistungsfähigen neuronalen Netzen und hat in vielen **Deep-Learning-Anwendungen** die Sigmoid- und
+Tanh-Funktionen abgelöst.
+
+<img src="images/relu.png" width="400"/>
+
+**Vorteile:**
+* Effiziente Berechnung
+    * Einfacher zu berechnen als Sigmoid oder Tanh
+* Schnellere Konvergenz
+    * Netzwerke mit ReLU konvergieren schnelleren
+    * Vanishing gradient wird weitgehend vermieden
+* Verbesserter Gradientendurchfluss
+    * Größere Gradientenwerte im Vergleich zu Sigmoid
+    * Lernen in tiefen Netzen wird verbessert
+
+**Nachteile:**
+* Dead Neurons
+    * Ist die Eingabe immer negativ, gibt es ständig 0 aus
+    * Das Neuron lernt dadurch nichts mehr und bleibt dauerhaft inaktiv
+* Unbeschränkte Ausgabewerte
+    * Höhere Aktivierungen möglich, die zu Instabilitäten führen können
+
+### Softmax
+
+Die **Softmax-Funktion** wird hauptsächlich in neuronalen Netzen für **Mehrklassen-Klassifikationsprobleme** verwendet.
+Sie transformiert die Rohwerte eines neuronalen Netzwerks in **Wahrscheinlichkeiten**, die alle zusammen 1 ergeben.
+Jede Ausgabe stellt die Wahrscheinlichkeit dar, dass die Eingabe zu einer bestimmten Klasse gehört.
+
+### Keine Aktivierungsfunktion
+
+Es gibt Netzwerke, bei denen keine Aktivierungsfunktionen eingesetzt werden. Allerdings werden diese selten verwendet, da sie keine
+komplexen, nicht-linearen Muster lernen können. 
+
+Ein einfaches neuronales Netz ohne Aktivierungsfunktion im Output-Layer (und mit MSELoss) entspricht der klassischen **linearen Regression**.
