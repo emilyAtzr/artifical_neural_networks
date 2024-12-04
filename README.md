@@ -289,8 +289,8 @@ Die Funktion wird häufig verwendet, um Werte in **Wahrscheinlichkeiten** umzuwa
 
 **Nachteile:**
 * Vanishing Gradient Problem
-    * Für sehr große / kleine Werte von x wird die Ableitung sehr kleine
-    * Erschwert das Training bei tiefen neuronalen Netzen erschwert
+    * Für sehr große / kleine Werte von x wird die Ableitung sehr klein
+    * Erschwert das Training bei tiefen neuronalen Netzen
 * Langsame Konvergenz im Vergleich zu modernen Aktivierungsfunktionen wie ReLU
 
 ### **ReLU**
