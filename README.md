@@ -231,13 +231,14 @@ Bei der **Regularisierung** geht es darum, ein Modell zu gestalten, dass **nicht
 
 **Ziel der Regularisierung:**
 * Modell soll vereinfacht werden
-    * Große Gewichtswerte werden bestraft
+    * Große Gewichtswerte werden reguliert
     * Komplexität des Modells wird eingeschränkt
 
 **Typen der Regularisierung:**
 * **L2-Regularisierung**
     * Verwendet um die Gewichte klein zu halten
     * Überanpassungen sollen so verhindert werden
+    * Angegeben durch die weight_decay
 * **L1-Regularisierung**
     * Einige Gewichtswerte werden auf 0 gesetzt
     * Features werden effektiv aus dem Modell entfernt (Feature Selection)
